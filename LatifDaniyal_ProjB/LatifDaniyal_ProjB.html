@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Super Reflective Dull Copper, Pearl, and Black Rubber
+	</title>  <!-- Keep it short: title appears on browser tab-->
+		<!-- OPTIONAL: let's surround canvas with a thin blue outline -->
+		<style type =" text/ css"> canvas {border: 2px dotted blue;} </style>
+  </head>
+
+	<!--	Create the HTML5 'canvas' element in which we will run WebGL
+	-->
+  <body onload="main()" onresize="onBrowserResize()">
+    <canvas id="webgl" width="800" height="500">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+	<br> 
+	    <b>Ray Tracer: Press 't' to Trace!</b> (left: WebGL Scene Preview. Right: Ray-Traced Result.). Be aware that clicking buttons does not have an on screen effect unless you trace afterwards. Click a button and trace!
+		For submit boxes, be sure to write a value in before submitting!
+	<br>
+	<br>
+	<input type="text" placeholder="xval for light1" id="xvalonebox">
+	<button type="button" onclick="editXOne()">edit light1's xval</button>
+
+	<input type="text" placeholder="yval for light1" id="yvalonebox">
+	<button type="button" onclick="editYOne()">edit light1's yval</button>
+
+	<input type="text" placeholder="zval for light1" id="zvalonebox">
+	<button type="button" onclick="editZOne()">edit light1's zval</button>
+
+	<input type="text" placeholder="xval for light2" id="xvaltwobox">
+	<button type="button" onclick="editXTwo()">edit light2's xval</button>
+
+	<input type="text" placeholder="yval for light2" id="yvaltwobox">
+	<button type="button" onclick="editYTwo()">edit light2's yval</button>
+
+	<input type="text" placeholder="zval for light2" id="zvaltwobox">
+	<button type="button" onclick="editZTwo()">edit light2's zval</button>
+	<br>
+	<script>
+		  function editXOne(){
+    lightOneX = document.getElementById("xvalonebox").value;
+		  }
+
+		  function editYOne(){
+    lightOneY = document.getElementById("yvalonebox").value;
+		  }
+
+		  function editZOne(){
+    lightOneZ = document.getElementById("zvalonebox").value;
+		  }
+
+		  function editXTwo(){
+    lightTwoX = document.getElementById("xvaltwobox").value;
+		  }
+
+		  function editYTwo(){
+    lightTwoY= document.getElementById("yvaltwobox").value;
+		  }
+
+		  function editZTwo(){
+    lightTwoZ = document.getElementById("zvaltwobox").value;
+		  }
+	</script>
+	<button type="button" onclick="onlightOneOnButton()"      >Light1 ON/OFF</button>
+		<button type="button" onclick="onlightTwoOnButton()"      >Light2 ON/OFF</button>
+
+      <!-- onSuperSampleButton() and onJitterButton() 
+           modifies this span object's contents: -->
+      	<br>
+	    <button type="button" onclick="onSceneButton()" >Change Scene</button>
+			<!-- onSceneButton() modifies this span object's contents: -->
+	    <span id='SceneReport'> Show Scene Number 0 </span> 
+		<br>
+	    <button type="button" onclick="onRecurseDepthButton()" >Toggle Recursive Depth</button>
+			<!-- onSceneButton() modifies this span object's contents: -->
+			<span id='RDreport'> Recursion Depth: 1 </span> 
+			<br>
+	    Mouse Drag: Aims the camera (turns left,right,up,down)
+	<br>
+	    W/S; A/D keys: move camera forward/backwards; strafe left/right. Q/E: strafe down/up.
+	<br>
+<hr> <!-- Draw a horizontal-line separator------------------------------------------------------------->
+	Open Console, please: (right-click-->'Inspect Element'-->'Console' tab)
+	<br>
+	Try keyboard & mouse click/drag inside the canvas, and:
+		<br>
+	<!-- Make 'div' elements to hold changeable HTML made in our JavaScript file;
+		 (where? GUIbox-Lib.js, in keyboard & mouse fcns)
+	-->
+	<p>
+		<div id='KeyDown'> KeyDown...</div>
+		<div id='KeyMod'> KeyMod...<br><br><br> </div>
+		<div id='MouseResult0'> MouseResult0... </div> 
+		<div id='MouseDragResult'> MouseDragResult... </div>
+		<div id='MouseCanvas'> MouseCanvas... </div>
+  </p>
+
+	<!--	Load in the JavaScript libraries supplied by our textbook 
+			(Matsuda et al., 2013 WebGL Programming Guide) that help us
+			with WebGL programming:
+	-->
+    <script src="./lib/webgl-utils.js"></script>
+    <script src="./lib/webgl-debug.js"></script>
+    <script src="./lib/cuon-utils.js"></script>
+<!-- REMOVED!!		<script src="../lib/cuon-matrix-quat03.js"></script>  -->
+<!-- Instead, we UPGRADED to Brandon Jones' far-faster, 
+      far more complete vector/matrix/quaternion library: 
+ 			SEE: http://glmatrix.net/ fast vector/matrix lib for webGL  -->
+    <script src="./lib/glMatrix.js"></script> 
+
+		<!-- finally, our own code: -->
+		<script src="JT_GUIbox-Lib.js"    ></script>
+		<script src="JT_tracer1-RayCamera.js"></script>
+		<script src="JT_tracer2-Geom.js"  ></script>
+		<script src="JT_tracer3-ImgBuf.js"></script>
+		<script src="JT_tracer0-Scene.js" ></script>
+		<script src="JT_VBObox-Lib.js"    ></script>
+    <script src="LatifDaniyal_ProjB.js"    ></script>
+  </body>
+</html>
